@@ -77,9 +77,6 @@ plt.legend()
 plt.show()
 st.pyplot()
 
-
-st.set_option('deprecation.showPyplotGlobalUse', False)
-
 # Churn proportion
 churn_proportion = data['Exited'].value_counts(normalize=True)
 st.write("## Churn Proportion")
