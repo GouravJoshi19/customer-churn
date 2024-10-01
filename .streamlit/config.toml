@@ -1,0 +1,16 @@
+[theme]
+primaryColor="#FF5733"
+backgroundColor="#D9E4EC" 
+secondaryBackgroundColor="#E8C6B9"
+textColor="#2C3E50"
+font="sans serif"
+
+[theme.css]
+primaryButton="box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); border-radius: 20px; font-weight: bold; padding: 10px 20px; background-color: #FF5733; color: #FFFFFF; border: none; cursor: pointer; transition: background-color 0.3s;"
+secondaryButton="box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); border-radius: 20px; font-weight: bold; padding: 10px 20px; background-color: #FFFFFF; color: #FF5733; border: 2px solid #FF5733; cursor: pointer; transition: background-color 0.3s;"
+
+[h1]
+color="#FF5733"
+font-size="2.5rem"
+[deprecation]
+showPyplotGlobalUse = false
