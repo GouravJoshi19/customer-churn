@@ -42,40 +42,39 @@ churned = data[data['Exited'] == 1]['Age']
 not_churned = data[data['Exited'] == 0]['Age']
 
 # Create histogram
-plt.hist([churned, not_churned], bins=20, color=['red', 'blue'], label=['Churned', 'Not Churned'])
-plt.xlabel('Age')
-plt.ylabel('Count')
-plt.title('Distribution of Ages for Churned and Non-Churned Customers')
-plt.legend()
-plt.show()
-st.pyplot()
+fig, ax = plt.subplots()
+ax.hist([churned, not_churned], bins=20, color=['red', 'blue'], label=['Churned', 'Not Churned'])
+ax.set_xlabel('Age')
+ax.set_ylabel('Count')
+ax.set_title('Distribution of Ages for Churned and Non-Churned Customers')
+ax.legend()
+st.pyplot(fig)  # Explicitly pass the figure to st.pyplot()
 
 # Filter by gender
 gender = st.selectbox("Select Gender", options=["All"] + data['Gender'].unique().tolist())
 if gender != "All":
     filtered_data = data[data['Gender'] == gender]
-    st.write("## Summary Statistics for", gender, "Customers")
+    st.write(f"## Summary Statistics for {gender} Customers")
     st.write(filtered_data.describe())
 
-
-#Gender Distribution
+# Gender Distribution
 st.write("## Gender Distribution")
-fig=sns.countplot(data=data,x='Gender')
-plt.title("Gender distribution in the Dataset")
-plt.legend()
-plt.show()
-st.pyplot()
+fig, ax = plt.subplots()
+sns.countplot(data=data, x='Gender', ax=ax)  # Set the figure axis explicitly
+ax.set_title("Gender distribution in the Dataset")
+st.pyplot(fig)  # Pass the figure to st.pyplot()
 
-#Proportion-gender
-churned_gender=data[data['Exited']==1]["Gender"]
-not_churned_gender=data[data['Exited']==0]["Gender"]
-histogram_3=plt.hist([churned_gender,not_churned_gender],color=['green','yellow'],label=['Churned','Not-Churned'])
-plt.xlabel('Gender')
-plt.ylabel('Count')
-plt.title('Distribution of Genders for Churned and Non-Churned Customers')
-plt.legend()
-plt.show()
-st.pyplot()
+# Proportion by gender for churned and non-churned customers
+churned_gender = data[data['Exited'] == 1]["Gender"]
+not_churned_gender = data[data['Exited'] == 0]["Gender"]
+
+fig, ax = plt.subplots()
+ax.hist([churned_gender, not_churned_gender], color=['green', 'yellow'], label=['Churned', 'Not-Churned'])
+ax.set_xlabel('Gender')
+ax.set_ylabel('Count')
+ax.set_title('Distribution of Genders for Churned and Non-Churned Customers')
+ax.legend()
+st.pyplot(fig)
 
 # Churn proportion
 churn_proportion = data['Exited'].value_counts(normalize=True)
